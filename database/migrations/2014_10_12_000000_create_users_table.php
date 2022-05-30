@@ -14,15 +14,15 @@ return new class extends Migration
     // tocara cambiar modelo y controler de login por el nombre de campos definidos para la tabla
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('sm_usuarios', function (Blueprint $table) {
             $table->increments('usr_id');
             $table->string('usr_correo')->unique();
             $table->timestamp('usr_correo_verified_at')->nullable();
             $table->string('usr_password');
             $table->integer('mun_id')->unsigned();
-            $table->foreign('mun_id')->references('mun_id')->on('municipalities')->onUpdate('cascade');
+            $table->foreign('mun_id')->references('mun_id')->on('sm_municipio')->onUpdate('cascade');
             $table->integer('tusr_id')->unsigned();
-            $table->foreign('tusr_id')->references('tusr_id')->on('type_users')->onUpdate('cascade');
+            $table->foreign('tusr_id')->references('tusr_id')->on('sm_tipo_usuarios')->onUpdate('cascade');
             $table->string('usr_dui',9)->nullable();
             $table->string('usr_nit',17)->nullable();
             $table->string('usr_direccion',150)->nullable();
@@ -43,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('sm_usuarios');
     }
 };

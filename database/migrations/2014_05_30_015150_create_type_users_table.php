@@ -12,10 +12,12 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create("type_users", function (Blueprint $table) {
+        Schema::create("sm_tipo_usuarios", function (Blueprint $table) {
             $table->increments("tusr_id");
             $table->string("tusr_tipo_usuario");
             $table->timestamps();
+            $table->charset = "utf8mb4";
+            $table->collation = "utf8mb4_unicode_ci";
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists("type_users");
+        Schema::dropIfExists("sm_tipo_usuarios");
     }
 };

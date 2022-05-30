@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('sm_comentario', function (Blueprint $table) {
             $table->increments('com_id');
             $table->string('com_comentario');
             $table->date('com_fecha_comentario');
             $table->integer('mo_id');
             $table->integer('usr_id')->unsigned();
-            $table->foreign('usr_id')->references('usr_id')->on('users')->onUpdate('cascade');
+            $table->foreign('usr_id')->references('usr_id')->on('sm_usuarios')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('sm_comentario');
     }
 };

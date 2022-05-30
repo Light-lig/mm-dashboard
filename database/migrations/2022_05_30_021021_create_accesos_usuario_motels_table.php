@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('accesos_usuario_motels', function (Blueprint $table) {
+        Schema::create('sm_accesos_usuario_motel', function (Blueprint $table) {
             $table->increments('acc_id');
             $table->integer('mo_id')->unsigned();
             $table->integer('usr_id')->unsigned();
-            $table->foreign('usr_id')->references('usr_id')->on('users')->onUpdate('cascade');
+            $table->foreign('usr_id')->references('usr_id')->on('sm_usuarios')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accesos_usuario_motels');
+        Schema::dropIfExists('sm_accesos_usuario_motel');
     }
 };

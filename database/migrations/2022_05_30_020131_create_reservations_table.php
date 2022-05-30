@@ -12,14 +12,14 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create("reservations", function (Blueprint $table) {
+        Schema::create("sm_reservaciones", function (Blueprint $table) {
             $table->increments("res_id");
             $table->date("fecha");
             $table->time("hora");
             $table->decimal("res_cantidad_apagar", 10, 6);
             $table->integer("ha_id")->unsigned();
             $table->integer("usr_id")->unsigned();
-            $table->foreign('usr_id')->references('usr_id')->on('users')->onUpdate('cascade');
+            $table->foreign('usr_id')->references('usr_id')->on('sm_usuarios')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists("reservations");
+        Schema::dropIfExists("sm_reservaciones");
     }
 };
