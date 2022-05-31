@@ -16,7 +16,7 @@ class MunicipalitySeeder extends Seeder
     public function run()
     {
         Municipality::insert([
-            [
+     
                 [
                     "mun_nombre" => "Ahuachapán",
                     "dep_id" => 1,
@@ -1581,7 +1581,7 @@ class MunicipalitySeeder extends Seeder
                     "dep_id" => 10,
                     "created_at" => now(),
                 ],
-            ],
+       
         ]);
     }
 }

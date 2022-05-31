@@ -13,10 +13,9 @@ return new class extends Migration {
     public function up()
     {
         Schema::create("sm_municipio", function (Blueprint $table) {
-            $table->increments("mun_id");
+            $table->id("mun_id")->autoIncrement();
             $table->string("mun_nombre");
-            $table->integer("dep_id")->unsigned();
-            $table->foreign('dep_id')->references('dep_id')->on('sm_departamento')->onUpdate('cascade');
+            $table->foreignId('dep_id')->references('dep_id')->on('sm_departamento')->onUpdate('cascade');
             $table->timestamps();
             $table->charset='utf8mb4';
             $table->collation='utf8mb4_unicode_ci';

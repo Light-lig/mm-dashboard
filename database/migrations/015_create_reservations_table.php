@@ -13,13 +13,12 @@ return new class extends Migration {
     public function up()
     {
         Schema::create("sm_reservaciones", function (Blueprint $table) {
-            $table->increments("res_id");
+            $table->id("res_id")->autoIncrement();
             $table->date("fecha");
             $table->time("hora");
             $table->decimal("res_cantidad_apagar", 10, 6);
-            $table->integer("ha_id")->unsigned();
-            $table->integer("usr_id")->unsigned();
-            $table->foreign('usr_id')->references('usr_id')->on('sm_usuarios')->onUpdate('cascade');
+            $table->foreignId('ha_id')->references('ha_id')->on('sm_habitacion')->onUpdate('cascade');
+            $table->foreignId('usr_id')->references('usr_id')->on('sm_usuarios')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reservation extends Model
+class SmAccesosUsuarioMoteles extends Model
 {
     use HasFactory;
-    protected $table = 'sm_reservacion';
+
+    protected $table = 'sm_accesos_usuario_motel';
 
 }

@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,12 +13,11 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create("sm_tipo_usuarios", function (Blueprint $table) {
-            $table->increments("tusr_id");
-            $table->string("tusr_tipo_usuario");
+        Schema::create('sm_accesos_usuario_motel', function (Blueprint $table) {
+            $table->id('acc_id')->autoIncrement();
+            $table->integer('mo_id')->unsigned();
+            $table->foreignId('usr_id')->references('usr_id')->on('sm_usuarios')->onUpdate('cascade');
             $table->timestamps();
-            $table->charset = "utf8mb4";
-            $table->collation = "utf8mb4_unicode_ci";
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists("sm_tipo_usuarios");
+        Schema::dropIfExists('sm_accesos_usuario_motel');
     }
 };

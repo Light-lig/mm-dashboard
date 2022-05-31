@@ -15,16 +15,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sm_usuarios', function (Blueprint $table) {
-            $table->increments('usr_id');
+            $table->id('usr_id')->autoIncrement();
             $table->string('usr_correo')->unique();
             $table->timestamp('usr_correo_verified_at')->nullable();
             $table->string('usr_password');
-            $table->integer('mun_id')->unsigned();
-            $table->foreign('mun_id')->references('mun_id')->on('sm_municipio')->onUpdate('cascade');
-            $table->integer('tusr_id')->unsigned();
-            $table->foreign('tusr_id')->references('tusr_id')->on('sm_tipo_usuarios')->onUpdate('cascade');
+            $table->foreignId('mun_id')->references('mun_id')->on('sm_municipio')->onUpdate('cascade');
+            $table->foreignId('tusr_id')->references('tusr_id')->on('sm_tipo_usuarios')->onUpdate('cascade');
             $table->string('usr_dui',9)->nullable();
-            $table->string('usr_nit',17)->nullable();
+            $table->string('usr_nit',18)->nullable();
             $table->string('usr_direccion',150)->nullable();
             $table->string('usr_nombre',25)->nullable();
             $table->string('usr_apellido',25)->nullable();

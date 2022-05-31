@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\TypeUser;
+use App\Models\SmTipoUsuarios;
 
 class TypeUserSeeder extends Seeder
 {
@@ -15,7 +15,7 @@ class TypeUserSeeder extends Seeder
      */
     public function run()
     {
-        TypeUser::insert([
+        SmTipoUsuarios::insert([
             [
                 "tusr_tipo_usuario" => "root",
             ],

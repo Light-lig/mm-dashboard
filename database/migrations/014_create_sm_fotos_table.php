@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sm_accesos_usuario_motel', function (Blueprint $table) {
-            $table->increments('acc_id');
-            $table->integer('mo_id')->unsigned();
-            $table->integer('usr_id')->unsigned();
-            $table->foreign('usr_id')->references('usr_id')->on('sm_usuarios')->onUpdate('cascade');
+        Schema::create('sm_fotos', function (Blueprint $table) {
+            $table->id('fot_id')->autoIncrement();
+            $table->string('fh_descripcion');
+            $table->binary('fh_foto');
+            $table->foreignId('ha_id')->references('ha_id')->on('sm_habitacion');
+            $table->foreignId('mo_id')->references('mo_id')->on('sm_motel');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sm_accesos_usuario_motel');
+        Schema::dropIfExists('sm_fotos');
     }
 };

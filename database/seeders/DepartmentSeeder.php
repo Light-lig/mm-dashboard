@@ -4,7 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Department;
+use App\Models\SmDepartamentos;
+use Illuminate\Support\Facades\DB;
 
 class DepartmentSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class DepartmentSeeder extends Seeder
      */
     public function run()
     {
-        Department::insert([
+        SmDepartamentos::insert([
             ["dep_nombre" => "Ahuachapán", "created_at" => now()],
             ["dep_nombre" => "Santa Ana", "created_at" => now()],
             ["dep_nombre" => "Sonsonate", "created_at" => now()],

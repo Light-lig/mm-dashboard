@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sm_departamento', function (Blueprint $table) {
-            $table->increments('dep_id');
-            $table->string('dep_nombre',15);
+        Schema::create('sm_valoracion', function (Blueprint $table) {
+            $table->id('val_id')->autoIncrement();
+            $table->integer('val_valoracion');
+            $table->foreignId('mo_id')->references('mo_id')->on('sm_motel');
             $table->timestamps();
-            $table->charset='utf8mb4';
-            $table->collation='utf8mb4_unicode_ci';
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sm_departamento');
+        Schema::dropIfExists('sm_valoracion');
     }
 };

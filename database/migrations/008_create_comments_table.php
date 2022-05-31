@@ -14,12 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sm_comentario', function (Blueprint $table) {
-            $table->increments('com_id');
+            $table->id('com_id')->autoIncrement();
             $table->string('com_comentario');
             $table->date('com_fecha_comentario');
             $table->integer('mo_id');
-            $table->integer('usr_id')->unsigned();
-            $table->foreign('usr_id')->references('usr_id')->on('sm_usuarios')->onUpdate('cascade');
+            $table->foreignId('usr_id')->references('usr_id')->on('sm_usuarios')->onUpdate('cascade');
             $table->timestamps();
         });
     }
