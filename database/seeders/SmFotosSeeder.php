@@ -16,17 +16,6 @@ class SmFotosSeeder extends Seeder
     public function run()
     {
         //
-        SmMoteles::insert([[
-            "est_estado"=>"disponible",
-            "est_orden" => 1
-        ],
-        [
-            "est_estado"=>"limpieza",
-            "est_orden" => 3
-        ],
-        [
-            "est_estado"=>"ocupado",
-            "est_orden" => 2
-        ]]);
+        
     }
 }

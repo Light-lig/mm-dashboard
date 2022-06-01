@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id('com_id')->autoIncrement();
             $table->string('com_comentario');
             $table->date('com_fecha_comentario');
-            $table->integer('mo_id');
             $table->foreignId('usr_id')->references('usr_id')->on('sm_usuarios')->onUpdate('cascade');
+            $table->foreignId('mo_id')->references('mo_id')->on('sm_motel')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

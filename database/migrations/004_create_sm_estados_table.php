@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('sm_estado', function (Blueprint $table) {
             $table->id('est_id')->autoIncrement();
             $table->string('est_estado');
+            $table->string('est_orden');
             $table->timestamps();
         });
     }

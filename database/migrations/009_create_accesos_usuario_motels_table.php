@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('sm_accesos_usuario_motel', function (Blueprint $table) {
             $table->id('acc_id')->autoIncrement();
-            $table->integer('mo_id')->unsigned();
             $table->foreignId('usr_id')->references('usr_id')->on('sm_usuarios')->onUpdate('cascade');
+            $table->foreignId('mo_id')->references('mo_id')->on('sm_motel')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
