@@ -1,20 +1,20 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
-class User extends Authenticatable
+use Spatie\Permission\Traits\HasRoles;
+class SmUsuarios extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
+
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     protected $table = 'sm_usuarios';
-
-
+    protected $guard = 'admin';
+    protected $primaryKey = 'usr_id'; 
     /**
      * The attributes that are mass assignable.
      *
@@ -22,7 +22,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'usr_correo',
-        'password',
+        'usr_password',
         'mun_id',
         'tusr_id',
         'usr_dui',
@@ -38,7 +38,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'usr_password',
         'remember_token',
     ];
 
@@ -50,4 +50,10 @@ class User extends Authenticatable
     protected $casts = [
         'usr_correo_verified_at' => 'datetime',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->usr_password;
+    }
+
 }

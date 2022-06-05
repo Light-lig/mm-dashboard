@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\SmUsuarios;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserSeeder extends Seeder
 {
@@ -15,10 +18,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::insert([
+       SmUsuarios::create(
             [
                 "usr_correo" => "correoprueba@gmail.com",
-                "usr_password" => bcrypt("1234"),
+                "usr_password" => Hash::make("1234"),
                 "mun_id" => 5,
                 "tusr_id" => 1,
                 "usr_dui" => "0000000-0",
@@ -26,7 +29,6 @@ class UserSeeder extends Seeder
                 "usr_direccion" => "Mariona",
                 "usr_nombre" => "Pastor",
                 "usr_apellido" => "Quiterio",
-            ],
-        ]);
+            ])->assignRole('admin'); 
     }
 }
