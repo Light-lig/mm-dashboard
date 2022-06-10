@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('sm_fotos', function (Blueprint $table) {
             $table->id('fot_id')->autoIncrement();
             $table->string('fh_descripcion');
-            $table->binary('fh_foto');
-            $table->foreignId('ha_id')->references('ha_id')->on('sm_habitacion');
-            $table->foreignId('mo_id')->references('mo_id')->on('sm_motel');
+            $table->string('fh_foto');
+            $table->foreignId('ha_id')->nullable()->references('ha_id')->on('sm_habitacion');
+            $table->foreignId('mo_id')->nullable()->references('mo_id')->on('sm_motel');
             $table->timestamps();
         });
     }

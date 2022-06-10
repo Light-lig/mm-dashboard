@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('usr_direccion',150)->nullable();
             $table->string('usr_nombre',25)->nullable();
             $table->string('usr_apellido',25)->nullable();
+            $table->integer('usr_id_padre')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

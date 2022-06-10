@@ -55,5 +55,18 @@ class SmUsuarios extends Authenticatable
     {
         return $this->usr_password;
     }
+    public function accesos(){
+       return  $this->hasMany(SmAccesosUsuarioMoteles::class,'usr_id');
+    }
 
+    public function moteles(){
+        return  $this->hasManyThrough(SmMoteles::class,SmAccesosUsuarioMoteles::class,
+        'usr_id', // Foreign key on the SmAccesosUsuarioMoteles table...
+        'mo_id', // Foreign key on the SmMoteles table...
+        'usr_id', // Local key on the projects table...
+        'mo_id' 
+    );
+
+    }
+  
 }

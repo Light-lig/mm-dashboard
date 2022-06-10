@@ -25,8 +25,23 @@ class RoleSeeder extends Seeder
         // moteles permisos
        Permission::create(['name' => 'admin.motels.index'])->syncRoles([$role1,$role2]);
        Permission::create(['name' => 'admin.motels.create'])->syncRoles([$role1,$role2]);
+       Permission::create(['name' => 'admin.motels.store'])->syncRoles([$role1,$role2]);
        Permission::create(['name' => 'admin.motels.edit'])->syncRoles([$role1,$role2]);
+       Permission::create(['name' => 'admin.motels.update'])->syncRoles([$role1,$role2]);
        Permission::create(['name' => 'admin.motels.destroy'])->syncRoles([$role1,$role2]);
+
+       //fotos permisos
+
+       Permission::create(['name' => 'admin.fotos.index'])->syncRoles([$role1,$role2]);
+       Permission::create(['name' => 'admin.fotos.create'])->syncRoles([$role1,$role2]);
+       Permission::create(['name' => 'admin.fotos.store'])->syncRoles([$role1,$role2]);
+       Permission::create(['name' => 'admin.fotos.edit'])->syncRoles([$role1,$role2]);
+       Permission::create(['name' => 'admin.fotos.update'])->syncRoles([$role1,$role2]);
+       Permission::create(['name' => 'admin.fotos.destroy'])->syncRoles([$role1,$role2]);
+
+       //accesos permisos
+       Permission::create(['name' => 'admin.accesos.motel.index'])->syncRoles([$role1,$role2]);
+
 
     }
 }

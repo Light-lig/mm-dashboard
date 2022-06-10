@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AccesosUsuarioMotel;
+use App\Models\SmAccesosUsuarioMoteles;
+use App\Models\SmUsuarios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AccesosUsuarioMotelController extends Controller
 {
@@ -15,6 +17,7 @@ class AccesosUsuarioMotelController extends Controller
     public function index()
     {
         //
+        return view('access-motels.index');
     }
 
     /**
@@ -36,6 +39,27 @@ class AccesosUsuarioMotelController extends Controller
     public function store(Request $request)
     {
         //
+        try {
+            //code...
+            $params = $request->all();
+            error_log(json_encode($params));
+            $accesos = SmAccesosUsuarioMoteles::where('usr_id',$params['usr_id'])->where('mo_id',$params['mo_id'])->get();
+            if(sizeof($accesos) == 0){
+                SmAccesosUsuarioMoteles::insert($params);
+                return response()->json(['status'=>'success',"message"=>"Se agrego permisos correctamente."]);
+
+            }else{
+                return response()->json(['status'=>'failed',"message"=>"Ya posee permisos para este recurso."]);
+            }
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            error_log($th->getMessage());
+        }
+     
+
+        return response()->json(['status'=>'failed',"message"=>"Ocurrio un error interno."]);
+
     }
 
     /**
@@ -44,7 +68,7 @@ class AccesosUsuarioMotelController extends Controller
      * @param  \App\Models\AccesosUsuarioMotel  $accesosUsuarioMotel
      * @return \Illuminate\Http\Response
      */
-    public function show(AccesosUsuarioMotel $accesosUsuarioMotel)
+    public function show(SmAccesosUsuarioMoteles $accesosUsuarioMotel)
     {
         //
     }
@@ -55,7 +79,7 @@ class AccesosUsuarioMotelController extends Controller
      * @param  \App\Models\AccesosUsuarioMotel  $accesosUsuarioMotel
      * @return \Illuminate\Http\Response
      */
-    public function edit(AccesosUsuarioMotel $accesosUsuarioMotel)
+    public function edit(SmAccesosUsuarioMoteles $accesosUsuarioMotel)
     {
         //
     }
@@ -67,7 +91,7 @@ class AccesosUsuarioMotelController extends Controller
      * @param  \App\Models\AccesosUsuarioMotel  $accesosUsuarioMotel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AccesosUsuarioMotel $accesosUsuarioMotel)
+    public function update(Request $request, SmAccesosUsuarioMoteles $accesosUsuarioMotel)
     {
         //
     }
@@ -78,8 +102,30 @@ class AccesosUsuarioMotelController extends Controller
      * @param  \App\Models\AccesosUsuarioMotel  $accesosUsuarioMotel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AccesosUsuarioMotel $accesosUsuarioMotel)
+    public function destroy(Request $request)
     {
         //
+        try {
+            //code...
+            $params = $request->all();
+            SmAccesosUsuarioMoteles::where('usr_id',$params['usr_id'])->where('mo_id',$params['mo_id'])->delete();
+            return response()->json(['status'=>'success']);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            error_log($th->getMessage());
+        }
+        return response()->json(['status'=>'failed',"message"=>"Ocurrio un error interno."]);
+
     }
+
+    public function getUsuarios(){
+        $user_id = Auth::user()->usr_id;
+        $moteles = Auth::user()->moteles;
+
+        $users = SmUsuarios::where('usr_id_padre',$user_id)->get();
+        $accesos = SmAccesosUsuarioMoteles::where('usr_id','!=',$user_id)->get();
+        return response()->json(['status'=>'success','users'=>$users,'motels'=>$moteles,'accesos'=>$accesos]);
+    }
+
 }
