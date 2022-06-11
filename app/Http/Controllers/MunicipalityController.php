@@ -15,6 +15,7 @@ class MunicipalityController extends Controller
     public function index()
     {
         //
+        return Municipality::all();
     }
 
     /**

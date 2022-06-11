@@ -1,13 +1,9 @@
 window._ = require("lodash");
-import Bundle from "bootstrap/dist/js/bootstrap.bundle.min";
-import swal from "sweetalert2";
-window.swal = swal;
+import * as L from 'leaflet'
+
+
 try {
-    window.$ = window.jQuery = require('jquery');
-    window.Bundle = Bundle;
-    require("datatables.net-bs5");
-    require("../../node_modules/bootstrap-select/dist/js/bootstrap-select.min");
-    //window.Popper = require("popper.js").default;
+   window.L = L;
     require("bootstrap");
 } catch (e) {}
 /**

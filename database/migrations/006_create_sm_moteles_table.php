@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('sm_motel', function (Blueprint $table) {
             $table->id('mo_id')->autoIncrement();
             $table->string('mo_direccion',150);
-            $table->binary('mo_foto_portada');
-            $table->string('mo_hora_apertura');
+            $table->string('mo_foto_portada');
             $table->double('mo_latitud');
             $table->double('mo_longitud');
             $table->string('mo_nombre');

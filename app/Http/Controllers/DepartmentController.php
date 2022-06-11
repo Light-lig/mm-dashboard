@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Department;
+use App\Models\SmDepartamentos;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -15,6 +15,7 @@ class DepartmentController extends Controller
     public function index()
     {
         //
+        return SmDepartamentos::all();
     }
 
     /**
@@ -44,7 +45,7 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function show(Department $department)
+    public function show(SmDepartamentos $department)
     {
         //
     }
@@ -55,7 +56,7 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(Department $department)
+    public function edit(SmDepartamentos $department)
     {
         //
     }
@@ -67,7 +68,7 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(Request $request, SmDepartamentos $department)
     {
         //
     }
@@ -78,7 +79,7 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $department)
+    public function destroy(SmDepartamentos $department)
     {
         //
     }

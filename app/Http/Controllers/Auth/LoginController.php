@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
+use Dotenv\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -37,4 +40,33 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+  
+    public function username()
+    {
+        return 'usr_correo';
+    }
+    protected function guard() {
+        return Auth::guard('admin');
+    }
+    public function authenticate(Request $request)
+    {
+       
+        $credentials = $request->validate([
+            'usr_correo' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+      
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended();
+        }
+ 
+        return back()->withErrors([
+            'password' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
+
+
 }
