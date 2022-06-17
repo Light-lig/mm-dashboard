@@ -100,7 +100,9 @@ export default {
        async save(){
             let res;
             this.profile.usr_id = this.id;
-           if(this.nuevaContra === this.usr_password){
+           if(this.profile.nuevaContra === this.profile.usr_password){
+
+              
                  res = await axios
                 .put(`api/modifyPassword/${this.id}`, this.profile)
                 .catch((e) => {
@@ -114,7 +116,7 @@ export default {
                 this.initialize();
             }
            }else {
-                ui.alert("Las contraseñas deben coincidir.");
+                ui.alert("Las contraseñas deben coincidir.","error");
            }     
        },
     },
