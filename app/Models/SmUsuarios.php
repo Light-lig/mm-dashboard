@@ -8,7 +8,6 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 class SmUsuarios extends Authenticatable
 {
-    use HasFactory;
 
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
@@ -67,6 +66,14 @@ class SmUsuarios extends Authenticatable
         'mo_id' 
     );
 
+    }
+
+    public function reservaciones(){
+        return $this->hasMany(Reservation::class,'usr_id');
+    }
+
+    public function municipio(){
+        return $this->belongsTo(Municipality::class,'mun_id');
     }
   
 }

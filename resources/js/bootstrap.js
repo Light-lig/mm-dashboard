@@ -1,9 +1,16 @@
 window._ = require("lodash");
 import * as L from 'leaflet'
-
+//import Bundle from "bootstrap/dist/js/bootstrap.bundle.min";
+// import swal from "sweetalert2";
+// window.swal = swal;
 
 try {
    window.L = L;
+//   window.$ = window.jQuery = require('jquery');
+ // window.Bundle = Bundle;
+// require("datatables.net-bs5");
+//    require("../../node_modules/bootstrap-select/dist/js/bootstrap-select.min");
+ //  window.Popper = require("popper.js").default;
     require("bootstrap");
 } catch (e) {}
 /**

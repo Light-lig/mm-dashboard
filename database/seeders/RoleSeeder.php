@@ -32,15 +32,24 @@ class RoleSeeder extends Seeder
 
        //fotos permisos
 
-       Permission::create(['name' => 'admin.fotos.index'])->syncRoles([$role1,$role2]);
-       Permission::create(['name' => 'admin.fotos.create'])->syncRoles([$role1,$role2]);
-       Permission::create(['name' => 'admin.fotos.store'])->syncRoles([$role1,$role2]);
-       Permission::create(['name' => 'admin.fotos.edit'])->syncRoles([$role1,$role2]);
-       Permission::create(['name' => 'admin.fotos.update'])->syncRoles([$role1,$role2]);
-       Permission::create(['name' => 'admin.fotos.destroy'])->syncRoles([$role1,$role2]);
+       Permission::create(['name' => 'admin.fotos.index'])->syncRoles([$role1,$role2,$role3]);
+       Permission::create(['name' => 'admin.fotos.create'])->syncRoles([$role1,$role2,$role3]);
+       Permission::create(['name' => 'admin.fotos.store'])->syncRoles([$role1,$role2,$role3]);
+       Permission::create(['name' => 'admin.fotos.edit'])->syncRoles([$role1,$role2,$role3]);
+       Permission::create(['name' => 'admin.fotos.update'])->syncRoles([$role1,$role2,$role3]);
+       Permission::create(['name' => 'admin.fotos.destroy'])->syncRoles([$role1,$role2,$role3]);
 
        //accesos permisos
        Permission::create(['name' => 'admin.accesos.motel.index'])->syncRoles([$role1,$role2]);
+
+       // habitacion permisos
+
+       Permission::create(['name' => 'user.habitacion.index'])->syncRoles([$role1,$role2,$role3]);
+       Permission::create(['name' => 'user.habitacion.create'])->syncRoles([$role1,$role2,$role3]);
+       Permission::create(['name' => 'user.habitacion.store'])->syncRoles([$role1,$role2,$role3]);
+       Permission::create(['name' => 'user.habitacion.edit'])->syncRoles([$role1,$role2,$role3]);
+       Permission::create(['name' => 'user.habitacion.update'])->syncRoles([$role1,$role2,$role3]);
+       Permission::create(['name' => 'user.habitacion.destroy'])->syncRoles([$role1,$role2,$role3]);
 
 
     }

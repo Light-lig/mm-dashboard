@@ -6,6 +6,7 @@ use App\Models\SmMoteles;
 use App\Models\SmAccesosUsuarioMoteles;
 use App\Models\SmCategorias;
 use App\Models\SmDepartamentos;
+use App\Models\SmValoraciones;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -157,5 +158,11 @@ class SmMotelesController extends Controller
 
         return redirect()->route('admin.motels.index')
         ->with('success','Motel eliminado con exito.');
+    }
+
+    public function allMotels(){
+        $motels = SmMoteles::with('valoracion')->get();
+      
+        return response()->json(['status'=>'success','moteles' =>$motels]);
     }
 }

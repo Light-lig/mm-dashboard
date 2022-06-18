@@ -21,8 +21,10 @@
      Vue.component(key.split("/").pop().split(".")[0], files(key).default);
  });
  import Notifications from 'vue-notification'
- Vue.use(Notifications)
+ import VueApexCharts from 'vue-apexcharts'
 
+ Vue.use(Notifications)
+ Vue.use(VueApexCharts)
  /**
   * Next, we will create a fresh Vue application instance and attach it to
   * the page. Then, you may begin adding components to this application

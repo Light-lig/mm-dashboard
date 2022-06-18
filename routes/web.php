@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SmMotelesController;
 use App\Http\Controllers\SmFotosController;
 use App\Http\Controllers\AccesosUsuarioMotelController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\SmHabitacionesController;
+use App\Http\Controllers\SmUsuarioController;
+use App\Models\SmHabitaciones;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +24,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'authenticate']);
+Route::controller(LoginController::class)->group(function(){
+    Route::post('/user/login', 'authenticate')->name('admin.login');
+});
 
+Route::get('/token', function () {
+    return response()->json(['token'=>csrf_token()]); 
+});
 Route::middleware(['auth'])->group(function(){
     
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.home');
@@ -46,15 +54,25 @@ Route::middleware(['auth'])->group(function(){
     });
 
     Route::controller(SmFotosController::class)->group(function(){
-        Route::get('/fotos/{id}','index')->name('admin.fotos.index');
-        Route::get('/fotos/add/{id}','create')->name('admin.fotos.create');
+        Route::get('/fotos/{tipo}/{id}','index')->name('admin.fotos.index');
+        Route::get('/fotos/add/{tipo}/{id}','create')->name('admin.fotos.create');
         Route::post('/fotos/store','store')->name('admin.fotos.store');
-        Route::get('/fotos/edit/{id}','edit')->name('admin.fotos.edit');
+        Route::get('/fotos/edit/{tipo}/{id}','edit')->name('admin.fotos.edit');
         Route::post('/fotos/update','update')->name('admin.fotos.update');
-        Route::post('/fotos/delete/{id}','destroy')->name('admin.fotos.destroy');
+        Route::post('/fotos/delete/{tipo}/{id}','destroy')->name('admin.fotos.destroy');
     });
 
+    Route::controller(SmHabitacionesController::class)->group(function(){
+        Route::get('/habitaciones/{id}','index')->name('user.habitacion.index');
+        Route::get('/habitaciones/add/{id}','create')->name('user.habitacion.create');
+        Route::post('/habitaciones/store','store')->name('user.habitacion.store');
+        Route::get('/habitaciones/edit/{id}','edit')->name('user.habitacion.edit');
+        Route::post('/habitaciones/update','update')->name('user.habitacion.update');
+        Route::post('/habitaciones/delete/{id}','destroy')->name('user.habitacion.destroy');
+    });
 });
+
+Auth::routes();
 
 
 

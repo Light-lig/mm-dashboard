@@ -9,7 +9,7 @@
 @endpush
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center shadow-sm bg-white">
         <h1 class="display-4">Editar motel</h1>
 
         <div class="col-md-8">
