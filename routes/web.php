@@ -34,6 +34,7 @@ Route::controller(LoginController::class)->group(function(){
 Route::get('/token', function () {
     return response()->json(['token'=>csrf_token()]); 
 });
+
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.home');

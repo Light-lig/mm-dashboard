@@ -31,6 +31,19 @@ class UserSeeder extends Seeder
         ])->assignRole("admin");
 
         SmUsuarios::create([
+            "usr_correo" => "root@correo.com",
+            "usr_password" => Hash::make("1234"),
+            "mun_id" => 5,
+            "tusr_id" => 1,
+            "usr_dui" => "0000000-0",
+            "usr_nit" => "0000-000000-000-01",
+            "usr_direccion" => "Mariona",
+            "usr_nombre" => "Pedro",
+            "usr_apellido" => "Perez",
+            "usr_role" => "root",
+        ])->assignRole("root");
+
+        SmUsuarios::create([
             "usr_correo" => "correo2prueba@gmail.com",
             "usr_password" => Hash::make("1234"),
             "mun_id" => 5,

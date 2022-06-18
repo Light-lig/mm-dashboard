@@ -40,6 +40,9 @@
 </head>
 <body>
     <div id="app">
+    @guest
+                        @else
+                        
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
@@ -50,23 +53,11 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                         
-                        @else
+                        
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -115,12 +106,7 @@
                                  {{ __('Categoria motel') }}
                                 </a>
                                 @endcan
-                                   @can('admin.accesos.motel.index')
-                                    <a class="dropdown-item" href="{{ route('admin.accesos.motel.index') }}"
-                                    >
-                                    {{ __('Acceso a moteles') }}
-                                    </a>
-                                  @endcan
+                                   
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
