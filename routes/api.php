@@ -9,6 +9,9 @@ use App\Models\SmTipoHabitaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
+use App\Http\Controllers\SmUsuarioController;
+use App\Http\Controllers\ContraseniaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +27,6 @@ use Spatie\Permission\Contracts\Role;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
 
 Route::get('tipo-habitaciones', function(){
     return TipoHabitacionesResource::collection(SmTipoHabitaciones::paginate(15));
@@ -75,3 +77,7 @@ Route::delete('categorias/{id}', function($id){
     $categorias->delete();
     return response()->json(['message' => 'Categoría eliminada']);
 });
+
+Route::apiResource('/user-profile', SmUsuarioController::class);
+Route::apiResource('/modifyPassword', ContraseniaController::class);
+

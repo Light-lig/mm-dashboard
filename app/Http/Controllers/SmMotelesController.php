@@ -93,7 +93,7 @@ class SmMotelesController extends Controller
         //
         $motel = SmMoteles::findOrFail($id);
         $categorias = SmCategorias::all();
-        $departamentos = SmDepartamentos::all();;
+        $departamentos = SmDepartamentos::all();
         return view('motels/edit/index',compact('motel','categorias', 'departamentos'));
 
     }

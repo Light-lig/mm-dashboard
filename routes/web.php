@@ -6,6 +6,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SmFotosController;
 use App\Http\Controllers\SmMotelesController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SmUsuarioController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +61,13 @@ Route::middleware(['auth'])->group(function () {
     /* Route::resource('api/room_types', SmTipoHabitacionesController::class); */
     Route::get('/tipoHabitaciones', function () {
         return view('roomtypes.index');
+    });
+
+    Route::controller(SmUsuarioController::class)->group(function(){
+        Route::get('/user-profile','index')->name('user.profile.index');
+        Route::get('api/user-profile','getProfile')->name('user.profile.getProfile');
+        Route::get('api/municipios/{id}','getMunicipios')->name('user.profile.getMunicipios');
+      
     });
 
     Route::get('/categorias', function () {

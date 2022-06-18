@@ -23,8 +23,8 @@ class SmUsuarios extends Authenticatable
     protected $fillable = [
         'usr_correo',
         'usr_password',
-        'mun_id',
         'tusr_id',
+        'mun_id',
         'usr_dui',
         'usr_nit',
         'usr_direccion',
@@ -32,6 +32,7 @@ class SmUsuarios extends Authenticatable
         'usr_apellido',
     ];
 
+    
     /**
      * The attributes that should be hidden for serialization.
      *
