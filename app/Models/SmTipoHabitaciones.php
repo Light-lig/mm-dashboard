@@ -10,5 +10,13 @@ class SmTipoHabitaciones extends Model
     use HasFactory;
 
     protected $table = 'sm_tipo_habitacion';
+    protected $fillable = [
+        'tipo',
+        'id_tipo_habitacion',
+    ];
+
+    public $timestamps = true;
+    public $incrementing = true;
+    public $primaryKey = 'id_tipo_habitacion';
 
 }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TipoHabitacionesRequest;
+use App\Http\Resources\TipoHabitacionesResource;
 use App\Models\SmTipoHabitaciones;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SmTipoHabitacionesController extends Controller
 {
@@ -14,7 +17,7 @@ class SmTipoHabitacionesController extends Controller
      */
     public function index()
     {
-        //
+        return TipoHabitacionesResource::collection(SmTipoHabitaciones::paginate(10));
     }
 
     /**
@@ -33,9 +36,10 @@ class SmTipoHabitacionesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TipoHabitacionesRequest $request)
     {
-        //
+        $type = SmTipoHabitaciones::create($request->validated());
+        return new TipoHabitacionesResource($type);
     }
 
     /**
