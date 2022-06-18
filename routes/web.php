@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SmUsuarioController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SmHabitacionesController;
-use App\Http\Controllers\SmUsuarioController;
-use App\Models\SmHabitaciones;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +23,7 @@ use App\Models\SmHabitaciones;
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view("auth.login");
 });
 
 Route::controller(LoginController::class)->group(function(){
@@ -55,7 +54,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/motels/update', 'update')->name('admin.motels.update');
         Route::post('/motels/delete/{id}', 'destroy')->name('admin.motels.destroy');
     });
-
+    Route::get('users', function() {
+        return view('users.index');
+    });
     Route::controller(SmFotosController::class)->group(function () {
         Route::get('/fotos/{id}', 'index')->name('admin.fotos.index');
         Route::get('/fotos/add/{id}', 'create')->name('admin.fotos.create');

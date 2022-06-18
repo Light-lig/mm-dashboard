@@ -30,7 +30,11 @@ class RoleSeeder extends Seeder
        Permission::create(['name' => 'admin.motels.update'])->syncRoles([$role1,$role2]);
        Permission::create(['name' => 'admin.motels.destroy'])->syncRoles([$role1,$role2]);
 
-       //fotos permisos
+       //   mantenimiento usuarios
+       Permission::create(['name' => 'admin.users.index'])->syncRoles([$role1,$role2]);
+       Permission::create(['name' => 'admin.users.store'])->syncRoles([$role1,$role2]);
+       Permission::create(['name' => 'admin.users.drag'])->syncRoles([$role1,$role2]);
+       Permission::create(['name' => 'admin.users.delete'])->syncRoles([$role1,$role2]);
 
        Permission::create(['name' => 'admin.fotos.index'])->syncRoles([$role1,$role2,$role3]);
        Permission::create(['name' => 'admin.fotos.create'])->syncRoles([$role1,$role2,$role3]);

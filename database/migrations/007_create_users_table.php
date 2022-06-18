@@ -19,14 +19,15 @@ return new class extends Migration
             $table->string('usr_correo')->unique();
             $table->timestamp('usr_correo_verified_at')->nullable();
             $table->string('usr_password');
-            $table->foreignId('mun_id')->references('mun_id')->on('sm_municipio')->onUpdate('cascade');
-            $table->foreignId('tusr_id')->references('tusr_id')->on('sm_tipo_usuarios')->onUpdate('cascade');
+            $table->foreignId('mun_id')->nullable()->references('mun_id')->on('sm_municipio')->onUpdate('cascade');
+            $table->foreignId('tusr_id')->nullable()->references('tusr_id')->on('sm_tipo_usuarios')->onUpdate('cascade');
             $table->string('usr_dui',9)->nullable();
             $table->string('usr_nit',18)->nullable();
             $table->string('usr_direccion',150)->nullable();
             $table->string('usr_nombre',25)->nullable();
             $table->string('usr_apellido',25)->nullable();
             $table->integer('usr_id_padre')->nullable();
+            $table->string('usr_role')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
