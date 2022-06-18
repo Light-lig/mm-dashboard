@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SmMotelesController;
 use App\Http\Controllers\SmFotosController;
 use App\Http\Controllers\AccesosUsuarioMotelController;
+use App\Http\Controllers\SmUsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,17 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/fotos/update','update')->name('admin.fotos.update');
         Route::post('/fotos/delete/{id}','destroy')->name('admin.fotos.destroy');
     });
+
+    Route::controller(SmUsuarioController::class)->group(function(){
+        Route::get('/user-profile','index')->name('user.profile.index');
+        Route::get('api/user-profile','getProfile')->name('user.profile.getProfile');
+        Route::get('api/municipios/{id}','getMunicipios')->name('user.profile.getMunicipios');
+      
+    });
+
+
+   
+   
 
 });
 

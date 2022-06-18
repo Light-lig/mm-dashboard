@@ -81,6 +81,10 @@
                                      {{ __('Moteles') }}
                                     </a>
                                     @endcan
+                                    <a class="dropdown-item" href="{{ route('user.profile.index')}}"
+                                     >
+                                     {{ __('Perfil') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('admin.accesos.motel.index') }}"
                                     >
                                     {{ __('Acceso a moteles') }}
