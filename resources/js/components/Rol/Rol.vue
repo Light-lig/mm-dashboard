@@ -167,11 +167,13 @@ export default {
                     console.log("-> ", this.rol.selectPermissions[1]); */
 
                     this.loading = true;
-                    /* await axios
+                    await axios
                         .post("api/roles", this.rol)
                         .then((res) => {
                             console.log("S ->", res);
                             ui.alert("Registro creado correctamente.");
+                            this.initialize();
+                            this.cleanInputs();
                         })
                         .catch((e) => {
                             console.log("F ->", e);
@@ -182,10 +184,9 @@ export default {
                                     "error"
                                 );
                             }
-                        }); */
+                        });
                     this.loading = false;
-                    /* this.initialize();
-            this.cleanInputs(); */
+                    /*  */
                     break;
                 case "Editar":
                     this.loading = true;
