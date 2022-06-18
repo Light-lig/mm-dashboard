@@ -20,7 +20,7 @@ class PDFController extends Controller
 
         /* view()->share('employee', $data['tipos']); */
 
-        $pdf = PDF::loadView('testPDF', $data);
+        $pdf = PDF::loadView('reporte.tipo-habitacion', $data);
 
         return $pdf->stream();
     }

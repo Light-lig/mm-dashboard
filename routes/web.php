@@ -80,4 +80,4 @@ Route::delete('api/roles', [RoleController::class, 'destroy'])->name('admin.role
 
 Route::get('api/permisos', [PermissionController::class, 'index'])->name('admin.permisos.index');
 
-Route::get('create-pdf-file', [PDFController::class, 'index'])->name('pdf.index');
+Route::get('reporte/tipo-habitacion', [PDFController::class, 'index'])->name('pdf.index');
