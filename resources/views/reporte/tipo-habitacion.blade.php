@@ -15,16 +15,25 @@
             <th scope="col">#</th>
             <th scope="col">Tipo</th>
             <th scope="col">Creado</th>
-            <th scope="col">Actualizado</th>            
+            <th scope="col">Actualizado</th>
+            <th scope="col">Permisos</th>            
         </tr>
         </thead>
         <tbody>
         @foreach($tipoHabitacion as $th)
         <tr>
-            <td>{{ $th->id_tipo_habitacion }}</td>
-            <td>{{ $th->tipo }}</td>            
+            <td>{{ $th->id }}</td>
+            <td>{{ $th->name }}</td>            
             <td>{{ $th->created_at }}</td>
             <td>{{ $th->updated_at }}</td>
+            <td>
+                <ul>
+                @foreach($th->permissions as $h)
+                    <li>{{ $h->name }}</li>
+                @endforeach
+                </ul>                
+            </td>
+            
         </tr>
         @endforeach
         </tbody>
