@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SmDepartamentos;
 use App\Models\Municipality;
 use App\Models\SmUsuarios;
 class SmUsuarioController extends Controller
 {
+    use AuthenticatesUsers;
+
     /**
      * Display a listing of the resource.
      *
@@ -97,5 +100,23 @@ class SmUsuarioController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function login(Request $request)
+    {
+       
+        $credentials = $request->validate([
+            'usr_correo' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+      
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            return response()->json(['status'=>'success',"mensaje"=>"Bienvenido.",'user'=>$user]);
+        }else{
+            return response()->json(['status'=>'failed',"message"=>"Usuario no existe."]);
+        }
+
     }
 }

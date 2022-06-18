@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SmEstados extends Model
 {
     use HasFactory;
+    protected $primaryKey = "est_id";
 
     protected $table = 'sm_estado';
 

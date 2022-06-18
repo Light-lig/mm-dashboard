@@ -8,7 +8,7 @@
 @section('content')
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center shadow-sm bg-white">
         <h1 class="display-4">Moteles</h1>
         @if ($message = Session::get('success'))
             <div class="alert alert-success alert-dismissible fade show">
@@ -45,7 +45,7 @@
                         {{-- <td>{{$motel->mo_foto_portada}}</td> --}}
                         <td><!-- Example single danger button -->
                             <div class="btn-group">
-                              <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                              <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="bi bi-gear" aria-hidden="true"></span>
                             </button>
                                 <ul class="dropdown-menu">
@@ -55,9 +55,11 @@
                                     @endcan
                                   
                                     @can('admin.fotos.index')
-                                        <li><a class="dropdown-item" href="{{ route('admin.fotos.index',["id"=>$motel->mo_id]) }}">Agregar fotos</a>
+                                        <li><a class="dropdown-item" href="{{ route('admin.fotos.index',["id"=>$motel->mo_id,"tipo"=>'moteles']) }}">Agregar fotos</a>
                                         </li>
                                     @endcan
+                                    <li><a class="dropdown-item" href="{{ route('user.habitacion.index',["id"=>$motel->mo_id]) }}">Habitaciones</a>
+                                    </li>
                                     @can('admin.motels.destroy')
                                     <form class="form-delete" motel='{{$motel->mo_id}}' action="{{ route('admin.motels.destroy',["id"=>$motel->mo_id]) }}" method="POST">
                                         @csrf

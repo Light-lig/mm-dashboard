@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SmTipoHabitaciones extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = 'id_tipo_habitacion'; 
     protected $table = 'sm_tipo_habitacion';
     protected $fillable = [
         'tipo',

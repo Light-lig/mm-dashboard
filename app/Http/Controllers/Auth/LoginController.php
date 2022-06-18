@@ -50,7 +50,7 @@ class LoginController extends Controller
     }
     public function authenticate(Request $request)
     {
-       
+       error_log('entre');
         $credentials = $request->validate([
             'usr_correo' => ['required', 'email'],
             'password' => ['required'],
@@ -67,6 +67,6 @@ class LoginController extends Controller
             'password' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
-
+ 
 
 }

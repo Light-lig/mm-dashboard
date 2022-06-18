@@ -7,7 +7,10 @@ use App\Http\Controllers\SmFotosController;
 use App\Http\Controllers\SmMotelesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SmUsuarioController;
-
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\SmHabitacionesController;
+use App\Http\Controllers\SmUsuarioController;
+use App\Models\SmHabitaciones;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +27,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'authenticate']);
+Route::controller(LoginController::class)->group(function(){
+    Route::post('/user/login', 'authenticate')->name('admin.login');
+});
 
+Route::get('/token', function () {
+    return response()->json(['token'=>csrf_token()]); 
+});
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.home');
@@ -73,18 +80,36 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/categorias', function () {
         return view('categoria.index');
     });
-
+    Route::controller(SmFotosController::class)->group(function(){
+        Route::get('/fotos/{tipo}/{id}','index')->name('admin.fotos.index');
+        Route::get('/fotos/add/{tipo}/{id}','create')->name('admin.fotos.create');
+        Route::post('/fotos/store','store')->name('admin.fotos.store');
+        Route::get('/fotos/edit/{tipo}/{id}','edit')->name('admin.fotos.edit');
+        Route::post('/fotos/update','update')->name('admin.fotos.update');
+        Route::post('/fotos/delete/{tipo}/{id}','destroy')->name('admin.fotos.destroy');
+    });
     Route::get('/roles', function () {
         return view('rol.index');
     });
 
+    Route::controller(SmHabitacionesController::class)->group(function(){
+        Route::get('/habitaciones/{id}','index')->name('user.habitacion.index');
+        Route::get('/habitaciones/add/{id}','create')->name('user.habitacion.create');
+        Route::post('/habitaciones/store','store')->name('user.habitacion.store');
+        Route::get('/habitaciones/edit/{id}','edit')->name('user.habitacion.edit');
+        Route::post('/habitaciones/update','update')->name('user.habitacion.update');
+        Route::post('/habitaciones/delete/{id}','destroy')->name('user.habitacion.destroy');
+    });
+
+    Route::get('api/roles', [RoleController::class, 'index'])->name('admin.roles.index');
+    Route::get('api/roles/{id}', [RoleController::class, 'show'])->name('admin.roles.show');
+    Route::post('api/roles', [RoleController::class, 'store'])->name('admin.roles.store');
+    Route::put('api/roles/{id}', [RoleController::class, 'update'])->name('admin.roles.update');
+    Route::delete('api/roles', [RoleController::class, 'destroy'])->name('admin.roles.destroy');
 });
 
-Route::get('api/roles', [RoleController::class, 'index'])->name('admin.roles.index');
-Route::get('api/roles/{id}', [RoleController::class, 'show'])->name('admin.roles.show');
-Route::post('api/roles', [RoleController::class, 'store'])->name('admin.roles.store');
-Route::put('api/roles/{id}', [RoleController::class, 'update'])->name('admin.roles.update');
-Route::delete('api/roles', [RoleController::class, 'destroy'])->name('admin.roles.destroy');
+
+Auth::routes();
 
 
 Route::get('api/permisos', [PermissionController::class, 'index'])->name('admin.permisos.index');

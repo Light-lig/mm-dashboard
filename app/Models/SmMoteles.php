@@ -27,4 +27,15 @@ class SmMoteles extends Model
     public function fotos(){
         return $this->hasMany(SmFotos::class,$this->primaryKey);
     }
+
+    public function habitaciones(){
+        return $this->hasMany(SmHabitaciones::class,$this->primaryKey);
+    }
+
+    public function valoracion(){
+        return $this->hasMany(SmValoraciones::class,$this->primaryKey);
+    }
+
+ 
+
 }

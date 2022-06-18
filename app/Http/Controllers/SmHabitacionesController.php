@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SmEstados;
 use App\Models\SmHabitaciones;
+use App\Models\SmMoteles;
+use App\Models\SmTipoHabitaciones;
 use Illuminate\Http\Request;
 
 class SmHabitacionesController extends Controller
@@ -12,9 +15,15 @@ class SmHabitacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         //
+        $motel = SmMoteles::find($id);
+        $mo_nombre = $motel->mo_nombre;
+        $habitaciones = $motel->habitaciones;
+        
+
+        return view('habitaciones.index',compact('mo_nombre','habitaciones','id'));
     }
 
     /**
@@ -22,9 +31,11 @@ class SmHabitacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
+        $tipos = SmTipoHabitaciones::all();
+        return view('habitaciones.add.add',compact('id','tipos'));
     }
 
     /**
@@ -36,6 +47,10 @@ class SmHabitacionesController extends Controller
     public function store(Request $request)
     {
         //
+        $parametros = $request->all();
+        $id = $parametros['mo_id'];
+        SmHabitaciones::create($parametros);
+        return redirect(route('user.habitacion.index',['id'=>$id]))->with('success', 'Su habitacion fue creada correctamente.');;
     }
 
     /**
@@ -55,9 +70,14 @@ class SmHabitacionesController extends Controller
      * @param  \App\Models\SmHabitaciones  $smHabitaciones
      * @return \Illuminate\Http\Response
      */
-    public function edit(SmHabitaciones $smHabitaciones)
+    public function edit($id)
     {
         //
+        $habitacion = SmHabitaciones::find($id);
+        $tipos = SmTipoHabitaciones::all();
+        $estados = SmEstados::all();
+        error_log(json_encode($estados));
+        return view('habitaciones.edit.edit',compact('habitacion','tipos','estados'));
     }
 
     /**
@@ -70,6 +90,11 @@ class SmHabitacionesController extends Controller
     public function update(Request $request, SmHabitaciones $smHabitaciones)
     {
         //
+        $parametros = $request->except('_token');
+        error_log(json_encode($parametros));
+        SmHabitaciones::where('ha_id', $parametros['ha_id'])->update($parametros);
+        return redirect(route('user.habitacion.index',['id'=>$parametros['mo_id']]))->with('success', 'Su habitacion fue modificada correctamente.');;
+
     }
 
     /**
@@ -78,8 +103,17 @@ class SmHabitacionesController extends Controller
      * @param  \App\Models\SmHabitaciones  $smHabitaciones
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SmHabitaciones $smHabitaciones)
+    public function destroy($id)
     {
         //
+        $habitacion = SmHabitaciones::find($id);
+        $habitacion->delete();
+            
+        return redirect()->route('user.habitacion.index',["id"=> $habitacion->mo_id])
+        ->with('success','Habitacion eliminada con exito.');
+    }
+    public function allHabitacionesByMotel($id){
+        $habitaciones = SmHabitaciones::with('estado')->with('fotos')->where('mo_id',$id)->get();
+        return response()->json(['status'=>'success','habitaciones'=>$habitaciones]);
     }
 }

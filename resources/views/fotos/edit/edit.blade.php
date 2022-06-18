@@ -13,16 +13,20 @@
         <h1 class="display-4">Editar foto</h1>
 
         <div class="col-md-8">
-            <a class="btn btn-primary w-25 mb-2" href="{{route('admin.fotos.index',["id"=>$foto->mo_id])}}" role="button">Volver</a>
+            <a class="btn btn-primary w-25 mb-2" href="{{route('admin.fotos.index',["id"=>($tipo=='moteles')?$foto->mo_id:$foto->ha_id,'tipo'=>$tipo])}}" role="button">Volver</a>
 
             <form action="{{route('admin.fotos.update')}}" method="POST" enctype="multipart/form-data">
               @csrf
 
                 <input type="hidden" name="mo_id" value="{{$foto->mo_id}}">
+                <input type="hidden" name="ha_id" value="{{$foto->ha_id}}">
+
                 <input type="hidden" name="fh_old_foto" value="{{$foto->fh_foto}}">
                 <input type="hidden" name="fot_id" value="{{$foto->fot_id}}">
+                <input type="hidden" name="tipo" value="{{$tipo}}">
+
                 <div class="mb-3">
-                  <img id="blah" class='img-thumbnail' src="{{ url('public/moteles/'.$foto->fh_foto) }}"  alt="your image" />
+                  <img id="blah" class='img-thumbnail' src="{{ url('public/'.$tipo.'/'.$foto->fh_foto) }}"  alt="your image" />
 
                   <label for="fh_foto" class="form-label">Foto portada</label>
                   <input type="file" class="form-control" id="fh_foto" name="fh_foto"  >
