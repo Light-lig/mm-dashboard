@@ -55,6 +55,9 @@ class RoleSeeder extends Seeder
        Permission::create(['name' => 'user.habitacion.update'])->syncRoles([$role1,$role2,$role3]);
        Permission::create(['name' => 'user.habitacion.destroy'])->syncRoles([$role1,$role2,$role3]);
 
+       Permission::create(['name' => 'user.tipohabitacion.index'])->syncRoles([$role2,$role3]);
+       Permission::create(['name' => 'root.roles.index'])->syncRoles([$role1]);
+       Permission::create(['name' => 'user.categoria.index'])->syncRoles([$role2,$role3]);
 
     }
 }

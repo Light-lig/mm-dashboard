@@ -15,7 +15,6 @@
                             <label for="usr_correo" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                            correoprueba@gmail.com
                                 <input id="usr_correo" type="email" class="form-control @error('email') is-invalid @enderror" name="usr_correo" value="{{ old('usr_correo') }}" required autocomplete="email" autofocus>
 
                                 @error('usr_correo')

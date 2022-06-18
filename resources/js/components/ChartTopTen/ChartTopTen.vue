@@ -25,11 +25,11 @@ export default {
       },
       series: [
         {
-          name: "series1",
+          name: "Majestic",
           data: [31, 40, 28, 51, 42, 109, 100]
         },
         {
-          name: "series2",
+          name: "Prueba",
           data: [11, 32, 45, 32, 34, 52, 41]
         }
       ]

@@ -91,10 +91,37 @@
                                      {{ __('Usuarios') }}
                                     </a>
                                     @endcan
+                                    @can('admin.accesos.motel.index')
                                     <a class="dropdown-item" href="{{ route('admin.accesos.motel.index') }}"
                                     >
                                     {{ __('Acceso a moteles') }}
                                    </a>
+                                   @endcan
+                                   @can('user.tipohabitacion.index')
+                                   <a class="dropdown-item" href="{{ url('tipoHabitaciones') }}"
+                                   >
+                                   {{ __('Tipo de habitacion') }}
+                                  </a>
+                                  @endcan
+                                  @can('root.roles.index')
+                                  <a class="dropdown-item" href="{{ url('roles') }}"
+                                  >
+                                  {{ __('Roles') }}
+                                 </a>
+                                 @endcan
+                                 @can('user.categoria.index')
+                                 <a class="dropdown-item" href="{{ url('categorias') }}"
+                                 >
+                                 {{ __('Categoria motel') }}
+                                </a>
+                                @endcan
+                                   @can('admin.accesos.motel.index')
+                                    <a class="dropdown-item" href="{{ route('admin.accesos.motel.index') }}"
+                                    >
+                                    {{ __('Acceso a moteles') }}
+                                    </a>
+                                  @endcan
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

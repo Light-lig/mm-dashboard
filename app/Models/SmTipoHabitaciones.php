@@ -19,6 +19,5 @@ class SmTipoHabitaciones extends Model
 
     public $timestamps = true;
     public $incrementing = true;
-    public $primaryKey = 'id_tipo_habitacion';
 
 }

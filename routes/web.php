@@ -68,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     /* Route::resource('api/room_types', SmTipoHabitacionesController::class); */
-    Route::get('/tipoHabitaciones', function () {
+    Route::get('tipoHabitaciones', function () {
         return view('roomtypes.index');
     });
 
@@ -79,7 +79,7 @@ Route::middleware(['auth'])->group(function () {
       
     });
 
-    Route::get('/categorias', function () {
+    Route::get('categorias', function () {
         return view('categoria.index');
     });
     Route::controller(SmFotosController::class)->group(function(){
@@ -90,7 +90,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/fotos/update','update')->name('admin.fotos.update');
         Route::post('/fotos/delete/{tipo}/{id}','destroy')->name('admin.fotos.destroy');
     });
-    Route::get('/roles', function () {
+    Route::get('roles', function () {
         return view('rol.index');
     });
 
