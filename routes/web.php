@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccesosUsuarioMotelController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SmFotosController;
@@ -112,5 +113,6 @@ Route::middleware(['auth'])->group(function () {
 
 Auth::routes();
 
-
 Route::get('api/permisos', [PermissionController::class, 'index'])->name('admin.permisos.index');
+
+Route::get('reporte/tipo-habitacion', [PDFController::class, 'index'])->name('pdf.index');

@@ -193,6 +193,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+
     ],
 
     /*
@@ -210,6 +213,7 @@ return [
         ->merge([
             // 'ExampleClass' => App\Example\ExampleClass::class,
             "DataTables" => Yajra\DataTables\Facades\DataTables::class,
+            'PDF' => Barryvdh\DomPDF\Facade::class,
         ])
         ->toArray(),
 ];
