@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccesosUsuarioMotelController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SmFotosController;
@@ -77,5 +78,6 @@ Route::post('api/roles', [RoleController::class, 'store'])->name('admin.roles.st
 Route::put('api/roles/{id}', [RoleController::class, 'update'])->name('admin.roles.update');
 Route::delete('api/roles', [RoleController::class, 'destroy'])->name('admin.roles.destroy');
 
-
 Route::get('api/permisos', [PermissionController::class, 'index'])->name('admin.permisos.index');
+
+Route::get('create-pdf-file', [PDFController::class, 'index'])->name('pdf.index');
