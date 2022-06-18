@@ -38,35 +38,34 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware("guest")->except("logout");
     }
-  
+
     public function username()
     {
-        return 'usr_correo';
+        return "usr_correo";
     }
-    protected function guard() {
-        return Auth::guard('admin');
+    protected function guard()
+    {
+        return Auth::guard("admin");
     }
     public function authenticate(Request $request)
     {
-       
         $credentials = $request->validate([
-            'usr_correo' => ['required', 'email'],
-            'password' => ['required'],
+            "usr_correo" => ["required", "email"],
+            "password" => ["required"],
         ]);
-      
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            return redirect()->intended();
+            return redirect("/home");
         }
- 
-        return back()->withErrors([
-            'password' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+
+        return back()
+            ->withErrors([
+                "password" =>
+                    "The provided credentials do not match our records.",
+            ])
+            ->onlyInput("email");
     }
-
-
 }

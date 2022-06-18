@@ -1,10 +1,16 @@
 window._ = require("lodash");
-import * as L from 'leaflet'
+import * as L from "leaflet";
 
-
+import swal from "sweetalert2";
+window.swal = swal;
 try {
-   window.L = L;
+    window.$ = window.jQuery = require("jquery");
+    require("datatables.net-bs5");
+    //require("../../node_modules/bootstrap-select/dist/js/bootstrap-select.min");
+    window.Popper = require("@popperjs/core");
+    window.L = L;
     require("bootstrap");
+    window.moment = require("moment");
 } catch (e) {}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -12,9 +18,9 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
+window.axios = require("axios");
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -32,4 +38,3 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-

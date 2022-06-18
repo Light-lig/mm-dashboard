@@ -81,6 +81,12 @@
                                      {{ __('Moteles') }}
                                     </a>
                                     @endcan
+                                    @can('admin.users.index')
+                                    <a class="dropdown-item" href="{{ url('users') }}"
+                                     >
+                                     {{ __('Usuarios') }}
+                                    </a>
+                                    @endcan
                                     <a class="dropdown-item" href="{{ route('admin.accesos.motel.index') }}"
                                     >
                                     {{ __('Acceso a moteles') }}

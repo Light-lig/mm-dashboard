@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SmMotelesController;
 use App\Http\Controllers\SmFotosController;
 use App\Http\Controllers\AccesosUsuarioMotelController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\AccesosUsuarioMotelController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view("auth.login");
 });
 
 Auth::routes();
@@ -34,6 +35,17 @@ Route::middleware(['auth'])->group(function(){
         Route::get('api/usuarios-by-padre',  'getUsuarios')->name('admin.accesos.motel.usuarios');
         Route::post('api/store-accesos',  'store')->name('admin.accesos.motel.store');
         Route::post('api/destroy-accesos',  'destroy')->name('admin.accesos.motel.destroy');
+    });
+
+    /* Route::controller(RegisterController::class)->group(function(){
+        Route::get('/users', 'index')->name('admin.users.index');
+        Route::post('/users', 'find')->name('admin.users.find');
+        Route::post('/users', 'store')->name('admin.users.store');
+        Route::post('/users', 'delete')->name('admin.users.delete');
+    }); */
+
+    Route::get('users', function() {
+        return view('users.index');
     });
 
     Route::controller(SmMotelesController::class)->group(function(){
